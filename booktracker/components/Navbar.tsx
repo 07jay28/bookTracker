@@ -3,34 +3,28 @@ import { Menu, Button, Navbar } from 'react-daisyui';
 
 const NavbarComponent = () => {
   return (
-  <Navbar className="bg-base-100 shadow-lg">
-    <div className="flex-1">
+    <Navbar className="bg-base-100 shadow-lg flex flex-row items-center justify-between ">
+      <div className="flex-1">
         <Button tag="a" color="ghost" className="normal-case text-xl">
-          daisyUI
+          ReadTrack
         </Button>
       </div>
       <div className="flex-none">
-        <Menu horizontal={true} className="px-1">
-          <Menu.Item>
-            <a>Link</a>
-          </Menu.Item>
-          <Menu.Item>
-            <details>
+        <ul className="menu menu-horizontal px-1 flex items-center gap-4">
+          <li><a>Link</a></li>
+          <li>
+            <details className="dropdown">
               <summary>Parent</summary>
-              <ul className="p-2 bg-base-100">
-                <li>
-                  <a>Link 1</a>
-                </li>
-                <li>
-                  <a>Link 2</a>
-                </li>
+              <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 absolute">
+                <li><a>Link 1</a></li>
+                <li><a>Link 2</a></li>
               </ul>
             </details>
-          </Menu.Item>
-        </Menu>
+          </li>
+        </ul>
       </div>
-  </Navbar>
-);
+    </Navbar>
+  );
 };
 
 export default NavbarComponent;
