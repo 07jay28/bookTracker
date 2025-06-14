@@ -1,0 +1,57 @@
+booktrackr/
+├── app/                      # (Next.js App Router structure)
+│   ├── layout.tsx            # Shared layout (nav, footer)
+│   ├── page.tsx              # Homepage
+│   ├── login/                # Login page
+│   ├── register/             # Signup page
+│   ├── dashboard/            # User dashboard
+│   │   └── page.tsx
+│   ├── book/                 # Book detail and progress
+│   │   └── [id]/             # Dynamic route for book ID
+│   │       └── page.tsx
+│   ├── friends/              # Friends list and requests
+│   │   └── page.tsx
+│   └── api/                  # Backend API routes
+│       ├── auth/             # Auth endpoints (if not using third-party)
+│       │   └── login.ts
+│       ├── books/            # Books CRUD
+│       │   └── route.ts
+│       ├── progress/         # Track reading progress
+│       │   └── route.ts
+│       └── friends/          # Friend requests, list, etc.
+│           └── route.ts
+│
+├── components/               # Reusable React components
+│   ├── Navbar.tsx
+│   ├── BookCard.tsx
+│   ├── ProgressForm.tsx
+│   └── FriendList.tsx
+│
+├── lib/                      # Database, utilities
+│   ├── prisma.ts             # Prisma client
+│   └── auth.ts               # Auth helpers
+│
+├── prisma/                   # Prisma DB schema and migrations
+│   ├── schema.prisma
+│
+├── public/                   # Static files
+│   └── favicon.ico
+│
+├── styles/                   # Global and custom styles
+│   └── globals.css
+│
+├── .env                      # Environment variables
+├── next.config.js
+├── package.json
+└── tsconfig.json
+
+
+              List of relations
+ Schema |        Name        | Type  |  Owner
+--------+--------------------+-------+----------
+ public | _prisma_migrations | table | tejas
+ public | books              | table | postgres
+ public | friends            | table | postgres
+ public | updates            | table | postgres
+ public | user_books         | table | postgres
+ public | users              | table | postgres

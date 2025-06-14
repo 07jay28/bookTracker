@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model books {
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String       @db.VarChar(255)
+  author      String?      @db.VarChar(255)
+  description String?
+  cover_url   String?
+  created_at  DateTime?    @default(now()) @db.Timestamp(6)
+  updates     updates[]
+  user_books  user_books[]
+}
+
+model friends {
+  id                             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                        String?   @db.Uuid
+  friend_id                      String?   @db.Uuid
+  status                         String?   @default("pending") @db.VarChar(20)
+  created_at                     DateTime? @default(now()) @db.Timestamp(6)
+  users_friends_friend_idTousers users?    @relation("friends_friend_idTousers", fields: [friend_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users_friends_user_idTousers   users?    @relation("friends_user_idTousers", fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, friend_id])
+}
+
+model updates {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String?   @db.Uuid
+  book_id    String?   @db.Uuid
+  content    String?
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  books      books?    @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model user_books {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id      String?   @db.Uuid
+  book_id      String?   @db.Uuid
+  progress     Int?      @default(0)
+  total_pages  Int?
+  status       String?   @default("reading") @db.VarChar(50)
+  last_updated DateTime? @default(now()) @db.Timestamp(6)
+  books        books?    @relation(fields: [book_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users        users?    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, book_id])
+}
+
+model users {
+  id                               String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username                         String       @unique @db.VarChar(50)
+  email                            String       @unique @db.VarChar(100)
+  password_hash                    String
+  avatar_url                       String?
+  bio                              String?
+  created_at                       DateTime?    @default(now()) @db.Timestamp(6)
+  friends_friends_friend_idTousers friends[]    @relation("friends_friend_idTousers")
+  friends_friends_user_idTousers   friends[]    @relation("friends_user_idTousers")
+  updates                          updates[]
+  user_books                       user_books[]
+}
