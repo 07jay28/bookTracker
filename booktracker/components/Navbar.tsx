@@ -3,7 +3,7 @@ import { Menu, Button, Navbar } from 'react-daisyui';
 
 const NavbarComponent = () => {
   return (
-    <Navbar className="bg-base-100 shadow-lg flex flex-row items-center justify-between ">
+    <Navbar className="rounded-box bg-primary text-primary-content shadow-lg flex flex-row items-center justify-between">
       <div className="flex-1">
         <Button tag="a" color="ghost" className="normal-case text-xl">
           ReadTrack
