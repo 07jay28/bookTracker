@@ -1,0 +1,3 @@
+Project trying to make an updated version of Goodreads. Mainly for me to practice using React and Typescript, but also using Cursor as my IDE and AI aid. 
+
+The goal is to create the idea of a new Goodreads called BookMark (name will probably change). Whether it will be a full service remains to be seen, but for now just working on creating a full stack project where I can learn more of React, Typescript, PostgreSQL, authentication, and possibly running it live (at the very least creating a prototype). 
