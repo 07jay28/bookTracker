@@ -41,15 +41,21 @@ export default function ProfilePage() {
         {/* Profile Header */}
         <div className="flex flex-row items-center mb-8 gap-8 justify-center">
           <div className="flex flex-col items-start min-w-[220px] mr-12">
-            <Avatar sx={{ width: 124, height: 124 }} src="https://images.unsplash.com/photo-1601814933824-fd0b574dd592?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+            <Avatar sx={{ width: 128, height: 128 }} src="https://images.unsplash.com/photo-1601814933824-fd0b574dd592?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
             <h1 className="text-3xl font-bold mt-4">{user.name}</h1>
             <p className="text-gray-600 mb-4">Member since {user.joinDate}</p>
             <HorizontalLineComponent color="black"></HorizontalLineComponent>
             <div>
                 <h1>Friends</h1>
+                <div>
+                    <Avatar sx={{ width: 32, height: 32 }}></Avatar>
+                </div>
             </div>
             <div>
                 <h1>Clubs</h1>
+                <div>
+                    <Avatar sx={{ width: 32, height: 32 }}></Avatar>
+                </div>
             </div>
             
           </div>
