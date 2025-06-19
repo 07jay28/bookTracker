@@ -4,16 +4,23 @@
 import { useEffect, useState } from 'react'
 import NavbarComponent from '../components/Navbar'
 import { Carousel, Theme, Input } from 'react-daisyui'
-import { BookOpenText, LogIn, SquarePen, Search } from 'lucide-react';
+import { BookOpenText, LogIn, SquarePen, Search, User } from 'lucide-react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { useRouter } from 'next/navigation';
 
 export default function HomePage() {
   const [users, setUsers] = useState([])
+  const router = useRouter()
 
   const buttonColor = createTheme({ 
     palette: {
-      main: "#fdc57e",
+      primary: {
+        main: "#fdc57e",
+        light: "#fddca7",
+        dark: "#b18a57",
+        contrastText: "#000000"
+      }
     }
   });
 
@@ -25,7 +32,7 @@ export default function HomePage() {
 
   return (
     <Theme dataTheme='retro' className="min-h-screen">
-      <main className="min-h-screen p-6">
+      <main className="min-h-screen p-6 pt-16">
         <div className="mb-8 flex items-center gap-2">
           <BookOpenText size={32} />
           <h1 className="text-2xl font-bold">BookMark</h1>
@@ -103,15 +110,25 @@ export default function HomePage() {
               </div>
               <div className="flex flex-col gap-4 mb-4 items-center">
                 <ThemeProvider theme={buttonColor}>
-                  <Button color="primary" variant="contained" sx={{ width: '200px' }} className="flex items-center gap-2">
+                  <Button 
+                    color="primary" 
+                    variant="contained" 
+                    sx={{ width: '200px' }} 
+                    className="flex items-center gap-2"
+                    onClick={() => router.push('./profile')}
+                  >
+                    <User size={20} />
+                    <span>View Profile</span>
+                  </Button>
+                  <Button color="secondary" variant="contained" sx={{ width: '200px' }} className="flex items-center gap-2">
                     <SquarePen size={20} />
                     <span>Sign Up</span>
                   </Button>
-                  <Button variant="contained" sx={{ width: '200px' }} className="flex items-center gap-2">
+                  <Button color="primary" variant="contained" sx={{ width: '200px' }} className="flex items-center gap-2">
                     <LogIn size={20} />
                     <span>Log In</span>
                   </Button>
-                  <Button variant="contained" sx={{ width: '200px' }} className="flex items-center gap-2">
+                  <Button color="primary" variant="contained" sx={{ width: '200px' }} className="flex items-center gap-2">
                     <Search size={20} />
                     <span>Browse Books</span>
                   </Button>

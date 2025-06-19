@@ -1,12 +1,14 @@
 import React from 'react';
 import { Menu, Button, Navbar } from 'react-daisyui';
+import { BookOpenText } from 'lucide-react'
 
 const NavbarComponent = () => {
   return (
-    <Navbar className="rounded-box bg-primary text-primary-content shadow-lg flex flex-row items-center justify-between">
-      <div className="flex-1">
+    <Navbar className="w-full fixed top-0 left-0 z-50 bg-base-300 text-primary-content shadow-lg flex flex-row items-center justify-between">
+      <div className="flex flex-row">
+        <BookOpenText></BookOpenText>
         <Button tag="a" color="ghost" className="normal-case text-xl">
-          ReadTrack
+          BookMark
         </Button>
       </div>
       <div className="flex-none">
